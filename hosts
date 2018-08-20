@@ -1,15 +1,17 @@
 [masters]
-osioperf-master1 ansible_host=10.8.247.156 ipv4_public=10.8.247.156 ipv4_private=172.19.9.12
-osioperf-master2 ansible_host=10.8.244.110 ipv4_public=10.8.244.110 ipv4_private=172.19.9.13
-osioperf-master3 ansible_host=10.8.250.164 ipv4_public=10.8.250.164 ipv4_private=172.19.9.24
+osioperf-master3 ansible_host=10.8.244.110 ipv4_public=10.8.244.110 ipv4_private=172.19.9.12
+osioperf-master2 ansible_host=10.8.247.16 ipv4_public=10.8.247.16 ipv4_private=172.19.9.11
+osioperf-master1 ansible_host=10.8.247.156 ipv4_public=10.8.247.156 ipv4_private=172.19.9.4
 
 [slaves]
-osioperf-slave2 ansible_host=10.8.247.112 ipv4_public=10.8.247.112 ipv4_private=172.19.9.16
-osioperf-slave3 ansible_host=10.8.247.42 ipv4_public=10.8.247.42 ipv4_private=172.19.9.14
-osioperf-slave4 ansible_host=10.8.244.158 ipv4_public=10.8.244.158 ipv4_private=172.19.9.17
-osioperf-slave5 ansible_host=10.8.247.224 ipv4_public=10.8.247.224 ipv4_private=172.19.9.18
-osioperf-slave6 ansible_host=10.8.245.166 ipv4_public=10.8.245.166 ipv4_private=172.19.9.5
-osioperf-slave7 ansible_host=10.8.247.147 ipv4_public=10.8.247.147 ipv4_private=172.19.9.15
-osioperf-slave8 ansible_host=10.8.247.155 ipv4_public=10.8.247.155 ipv4_private=172.19.9.6
-osioperf-slave9 ansible_host=10.8.245.57 ipv4_public=10.8.245.57 ipv4_private=172.19.9.20
-osioperf-slave1 ansible_host=10.8.247.162 ipv4_public=10.8.247.162 ipv4_private=172.19.9.10
+osioperf-slave10 ansible_host=10.8.248.160 ipv4_public=10.8.248.160 ipv4_private=172.19.9.24
+osioperf-slave9 ansible_host=10.8.247.155 ipv4_public=10.8.247.155 ipv4_private=172.19.9.22
+osioperf-slave8 ansible_host=10.8.250.164 ipv4_public=10.8.250.164 ipv4_private=172.19.9.8
+osioperf-slave7 ansible_host=10.8.247.147 ipv4_public=10.8.247.147 ipv4_private=172.19.9.17
+osioperf-slave6 ansible_host=10.8.245.166 ipv4_public=10.8.245.166 ipv4_private=172.19.9.20
+osioperf-slave5 ansible_host=10.8.247.224 ipv4_public=10.8.247.224 ipv4_private=172.19.9.14
+osioperf-slave4 ansible_host=10.8.244.158 ipv4_public=10.8.244.158 ipv4_private=172.19.9.6
+osioperf-slave3 ansible_host=10.8.247.42 ipv4_public=10.8.247.42 ipv4_private=172.19.9.18
+osioperf-slave2 ansible_host=10.8.247.112 ipv4_public=10.8.247.112 ipv4_private=172.19.9.9
+osioperf-slave1 ansible_host=10.8.247.162 ipv4_public=10.8.247.162 ipv4_private=172.19.9.7
+

@@ -12,7 +12,8 @@
     timeout: 200
     verify: '{{ os7_validate_ssl_certs }}'
   with_sequence:
-    count={{ os7_master_count }} format={{ os7_master_name }}%02d
+    #count={{ os7_master_count }} format={{ os7_master_name }}%02d
+    count={{ os7_master_count }}
   register: os7_master_instances
   tags: [os7, deploy]
 
@@ -67,7 +68,8 @@
     timeout: 200
     verify: '{{ os7_validate_ssl_certs }}'
   with_sequence:
-    count={{ os7_slave_count }} format={{ os7_slave_name }}%02d
+    #count={{ os7_slave_count }} format={{ os7_slave_name }}%02d
+    count={{ os7_slave_count }}
   register: os7_slave_instances
   tags: [os7, deploy]
 

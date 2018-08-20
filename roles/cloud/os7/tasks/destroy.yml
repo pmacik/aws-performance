@@ -1,17 +1,19 @@
 ---
 - name: Delete master instances
   os_server:
-    name: "{{ os7_master_name }}{{ item }}"
+    name: "{{ item }}"
     state: absent
   with_sequence:
+    #count={{ os7_master_count }} format={{ os7_master_name }}%02d
     count={{ os7_master_count }}
   tags: [os7, destroy]
 
 - name: Delete slave instances
   os_server:
-    name: "{{ os7_slave_name }}{{ item }}"
+    name: "{{ item }}"
     state: absent
   with_sequence:
+    #count={{ os7_slave_count }} format={{ os7_slave_name }}%02d
     count={{ os7_slave_count }}
   tags: [os7, destroy]
 

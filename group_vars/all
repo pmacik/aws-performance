@@ -9,7 +9,7 @@ cloud_vm_prefix: osioperf-
 #you can define public network in your openstack e.g. 10.5.125.0, open Network tab in openstack console
 #cloud_net_pub_name
 
-debug: yes
+debug: true
 
 os7_master_count: 3
 os7_slave_count: 10

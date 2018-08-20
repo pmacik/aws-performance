@@ -12,7 +12,7 @@
     - include_role: name=tools/locust
     - include_role: name=tools/maven
     - include_role: name=tools/oc
-    - include_role: name=tools/str
+    #- include_role: name=tools/str
 
 - name: Install Performance Tooling
   hosts: masters:slaves
@@ -30,7 +30,7 @@
     - tools/locust
     - tools/maven
     - tools/oc
-    - tools/str
+    #- tools/str
     - zabbix
   post_tasks:
     - copy:
