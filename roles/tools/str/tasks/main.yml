@@ -1,0 +1,19 @@
+---
+- name: 'Ensure PIP packages installed'
+  pip:
+    name: '{{ item }}'
+    state: latest
+    extra_args: -I 
+  become: yes
+  with_items: '{{ pip_packages }}'
+  no_log: '{{ False if debug else True }}'
+  tags: [locust, pip]
+
+- name: 'Ensure STR tool GIT repo installed'
+  git:
+    repo: http://git.app.eng.bos.redhat.com/git/sti_ext.git
+    dest: /opt
+  become_user: '{{ tools_owner_name }}'
+  become: yes
+  register: str_tool_git_cloned
+  tags: [str_tool, clone]

@@ -9,11 +9,10 @@
   roles:
     - cloud/os7
   tasks:
-#    - include_role: name=tools/gatling
-#    - include_role: name=tools/jmeter
     - include_role: name=tools/locust
     - include_role: name=tools/maven
     - include_role: name=tools/oc
+    - include_role: name=tools/str
 
 - name: Install Performance Tooling
   hosts: masters:slaves
@@ -28,11 +27,10 @@
   roles:
     - system/docker
     - system/ohmyzsh
-#    - tools/gatling
-#    - tools/jmeter
     - tools/locust
     - tools/maven
     - tools/oc
+    - tools/str
     - zabbix
   post_tasks:
     - copy:

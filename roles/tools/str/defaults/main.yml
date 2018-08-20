@@ -1,0 +1,7 @@
+---
+pip_packages:
+  - psutil
+  - elasticsearch
+  - pytest
+  - pytest-html
+  - requests
