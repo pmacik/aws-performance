@@ -1,0 +1,26 @@
+- name: Install Performance Tooling
+  hosts: masters:slaves
+  #gather_facts: '{{ hostvars["localhost"]["cloud_destroyed"]|default(False)|ternary(False, True) }}'
+  vars:
+    tools_owner_name: 'jenkins'
+    tools_owner_home: '/var/lib/jenkins'
+    local_whoami_home: '{{ lookup("env","HOME") }}'
+  pre_tasks:
+    - meta: end_play
+      when: hostvars["localhost"]["cloud_destroyed"]|default(False)
+  roles:
+    - system/docker
+    - system/ohmyzsh
+    - tools/locust
+    - tools/maven
+    - tools/oc
+    - zabbix
+  post_tasks:
+    - copy:
+        src: '{{ local_whoami_home }}/.ssh/ec2.jenkins'
+        dest: '{{ tools_owner_home }}/.ssh/id_rsa'
+        mode: 0600
+        remote_src: no
+      become: yes
+      become_user: '{{ tools_owner_name }}'
+      when: inventory_hostname_short in groups["masters"]

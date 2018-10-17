@@ -2,6 +2,7 @@
 epel_packages:
   - collectl
   - htop
+  - jq
   - python2-pip
 
 system_pip_version: 9.0.0
