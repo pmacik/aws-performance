@@ -6,8 +6,6 @@
     tools_owner_name: '{{ lookup("env","USER") }}'
     tools_owner_home: '{{ lookup("env","HOME") }}'
     local_whoami_home: '{{ tools_owner_home }}'
-    #ansible_python_interpreter: '/home/pmacik/work/devtools/!aws-performance.git/.venv/bin/python3'
-    #ansible_pkg_mgr: 'dnf'
   roles:
     - cloud/os7
   tasks:
@@ -22,6 +20,7 @@
     tools_owner_name: 'jenkins'
     tools_owner_home: '/var/lib/jenkins'
     local_whoami_home: '{{ lookup("env","HOME") }}'
+    ansible_pkg_mgr: 'yum'
   pre_tasks:
     - meta: end_play
       when: hostvars["localhost"]["cloud_destroyed"]|default(False)
@@ -42,12 +41,12 @@
       become_user: '{{ tools_owner_name }}'
       when: inventory_hostname_short in groups["masters"]
 
-#- name: Add VMs to Jenkins master
-#  hosts: localhost
-#  gather_facts: no
-#  vars:
-#    local_whoami_home: '{{ lookup("env","HOME") }}'
-#  vars_files:
-#    - secret.yml
-#  roles:
-#    - pjenkins
+- name: Add VMs to Jenkins master
+  hosts: localhost
+  gather_facts: no
+  vars:
+    local_whoami_home: '{{ lookup("env","HOME") }}'
+  vars_files:
+    - secret.yml
+  roles:
+    - pjenkins
