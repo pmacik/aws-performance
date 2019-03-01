@@ -1,0 +1,57 @@
+---
+- name: Deploy master instances
+  os_server:
+    name: '{{ os7_master_name }}{{ item }}'
+    image: '{{ os7_image_id }}'
+    flavor: '{{ os7_master_flavor }}'
+    key_name: '{{ os7_sshkey_name }}'
+    network: '{{ os7_net_priv_name }}'
+    floating_ip_pools: '{{ os7_net_floating_ip_pools}}'
+    security_groups: '{{ os7_security_group_name }}'
+    #auto_ip: yes
+    state: present
+    timeout: 200
+    verify: '{{ os7_validate_ssl_certs }}'
+  with_sequence:
+    count={{ os7_master_count }} format=%d
+  register: os7_master_instances
+  tags: [os7, deploy-masters]
+
+- debug: var=os7_master_instances
+  when: debug
+  tags: [os7, deploy-masters]
+
+- name: Add master instances to inventory
+  add_host:
+    name: '{{ item.server.name }}'
+    groups: 'masters'
+    ansible_host: '{{ item.server.accessIPv4 }}'
+    ansible_user: "{{ host_facts.user_name }}"
+    ansible_connection: "{{ host_facts.connection_type }}"
+    ansible_port: "{{ host_facts.connection_port }}"
+    ipv4_public: "{{ item.server.public_v4 }}"
+    ipv4_private: "{{ item.server.private_v4 }}"
+  with_items: "{{ os7_master_instances.results }}"
+  no_log: '{{ False if debug else True }}'
+  tags: [os7, deploy-masters]
+
+- name: Wait for master instances port {{ host_facts.connection_port }} to be ready
+  wait_for:
+    port: '{{ host_facts.connection_port }}'
+    host: '{{ hostvars[item].ansible_host }}'
+    search_regex: OpenSSH
+    delay: 10
+  with_items: '{{ groups["masters"] }}'
+  tags: [os7, deploy-masters]
+
+- name: Add masters to inventory file
+  lineinfile:
+    dest: '{{ playbook_dir }}/hosts'
+    regexp: '^{{ item }}'
+    line: '{{ item }} ansible_host={{ hostvars[item].ansible_host }} ipv4_public={{ hostvars[item].ipv4_public }} ipv4_private={{ hostvars[item].ipv4_private }}'
+    insertafter: '\[masters\]'
+    state: present
+  changed_when: False
+  with_items: '{{ groups["masters"] }}'
+  tags: [os7, deploy-masters]
+

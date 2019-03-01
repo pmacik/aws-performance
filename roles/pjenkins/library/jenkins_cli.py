@@ -20,14 +20,13 @@ class MultiRegex(object):
     '''
     determine which partial regex matched, and dispatch on self accordingly
     '''
-    for k, v in mo.groupdict().iteritems():
+    for k, v in mo.groupdict().items():
       if v:
         sub = getattr(self, k)
         if callable(sub):
           return sub(mo)
         return sub
-    raise AttributeError, \
-      'nothing captured, matching sub-regex could not be identified'
+    raise AttributeError('nothing captured, matching sub-regex could not be identified')
 
 
 class ParenthesesRegex(MultiRegex):
@@ -77,7 +76,7 @@ def _jenkins_cli(jenkins_url=None, username=None, password=None, **kwargs):
       return result
 
   except jenkins.JenkinsException as e:
-    result['msg'] = e.message
+    result['msg'] = str(e)
     return result
 
   result['jenkins_cli'] = output

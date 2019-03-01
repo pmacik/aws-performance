@@ -16,7 +16,7 @@ jenkins:
     labels:
       - '{{ jenkins_prefix|regex_replace("-$") }}'
       - centos7-x86_64
-      - ci-rhos
+      - rhos-d
   ssh:
     credentials:
       id: '{{ jenkins_prefix }}sshkey'

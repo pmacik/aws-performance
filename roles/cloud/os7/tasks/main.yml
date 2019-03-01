@@ -4,6 +4,8 @@
     name: 'shade'
     state: latest
     extra_args: -I
+    virtualenv: .venv
+    virtualenv_command: '/usr/bin/python3 -m venv'
   become: yes
   no_log: '{{ False if debug else True }}'
   tags: [os7, pip]
@@ -18,8 +20,10 @@
     tags: [os7, security]
   - include_tasks: sshkey.yml
     tags: [os7, sshkey]
-  - include_tasks: deploy.yml
-    tags: [os7, deploy]
+  - include_tasks: deploy-masters.yml
+    tags: [os7, deploy-masters]
+  - include_tasks: deploy-slaves.yml
+    tags: [os7, deploy-slaves]
   - include_tasks: destroy.yml
     tags: [os7, never, destroy]
   # block

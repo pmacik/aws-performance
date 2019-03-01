@@ -14,17 +14,18 @@ os7_master_flavor: m1.large
 os7_slave_count: 10
 os7_slave_flavor: m1.medium
 
-os7_image_id: 'd1b458f6-245d-4b62-9035-07629fbd7081'
+os7_image_id: 'c689e636-5a62-4ae6-ab79-193798e7d9b1'
 
 os7_master_name: '{{ os7_prefix }}master'
 os7_slave_name: '{{ os7_prefix }}slave'
 os7_sshkey_name: '{{ os7_prefix }}sshkey1'
 
-os7_net_pub_name: '{{ cloud_net_pub_name|default("10.8.240.0") }}'
+os7_net_pub_name: '{{ cloud_net_pub_name|default("provider_net_cci_5") }}'
 os7_net_priv_name: '{{ os7_prefix }}net1-private'
 #os7_net_priv_name: 'mobile-jenkins'
 os7_subnet_priv_name: '{{ os7_prefix }}subnet1-private'
 os7_router_priv_name: '{{ os7_prefix }}router1'
+os7_net_floating_ip_pools: 'provider_net_cci_5'
 
 os7_security_group_name: '{{ os7_prefix }}sec-group1'
 os7_security_group_desc: 'Security group for performance testing instances'
